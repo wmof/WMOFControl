@@ -1,0 +1,10 @@
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\bin\Debug\WMOFControl.exe.config
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.csprojResolveAssemblyReference.cache
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.Form1.resources
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.Properties.Resources.resources
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.csproj.GenerateResource.Cache
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\bin\Debug\WMOFControl.exe
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\bin\Debug\WMOFControl.pdb
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\bin\Debug\MySql.Data.dll
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.exe
+c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.pdb
