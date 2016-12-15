@@ -15,6 +15,7 @@ namespace WMOFControl.Object
         string cpf;
         string cnpj;
         string tipo;
+        string senha;
 
         public int Codigo
         {
@@ -104,6 +105,19 @@ namespace WMOFControl.Object
             set
             {
                 tipo = value;
+            }
+        }
+
+        public string Senha
+        {
+            get
+            {
+                return senha;
+            }
+
+            set
+            {
+                senha = value;
             }
         }
     }

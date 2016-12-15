@@ -14,26 +14,18 @@ namespace WMOFControl.Data
 
     class Conn
     {
-
-
         public MySqlConnection conexao;
         public DataSet conexaoDataSet;
-
-        public string script = "Server = 179.188.16.150; Database=wmofdata; Uid=wmofdata; Pwd=lefera1209";
-
+        string script = "Server = 179.188.16.150; Database=wmofdata; Uid=wmofdata; Pwd=lefera1209";
         public MySqlConnection conect()
         {
             {
-
                 conexaoDataSet = new DataSet();
                 conexao = new MySqlConnection(script);
                 try
                 {
-
                     conexao.Open();
-                    MessageBox.Show("conexão com o banco de dados ok");
                     return conexao;
-
                 }
 
                 catch (Exception e)
@@ -43,8 +35,6 @@ namespace WMOFControl.Data
                     return null;
                 }
             }
-
-
         }
     }
 }

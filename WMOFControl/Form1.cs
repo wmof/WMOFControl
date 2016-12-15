@@ -15,14 +15,23 @@ namespace WMOFControl
     public partial class Form1 : Form
     {
         List<Cliente> lista;
+        Cliente pesquisa;
         public Form1()
         {
             InitializeComponent();
+            pesquisa = null;
         }
+        
         private void mostrarCliente()
         {
             BdCliente mostrar = new BdCliente();
-            lista = mostrar.selectCliente();
+            
+            lista = mostrar.selectCliente(pesquisa);
+            if (lista.Count() == 0)
+            {
+                MessageBox.Show("Nenhum cliente encontrado");
+                return;
+            }
             listView1.Items.Clear();
             for (int i = 0; i < lista.Count; i++)
             {

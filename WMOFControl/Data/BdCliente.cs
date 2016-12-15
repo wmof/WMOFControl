@@ -14,35 +14,129 @@ namespace WMOFControl.Data
 {
     class BdCliente
     {
-        Conn bdbb = new Conn();
-        MySqlConnection bd = new MySqlConnection();
-        public List<Cliente> selectCliente()
+        Conn bd = new Conn();
+        public List<Cliente> selectCliente(Cliente pesquisa)
         {
             try
             {
-                List<Cliente> clientes = new List<Cliente>();
+                List<Cliente> listCliente = new List<Cliente>();
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = new MySqlCommand("SELECT * FROM cliente ORDER BY codigo;", bdbb.conect());
-
+                string sql = "SELECT * FROM cliente ORDER BY nome";
+                if (pesquisa != null)
+                {
+                    sql = sql + "WHERE 1 = 1";
+                    if (pesquisa.Nome != "")
+                    {
+                        sql = sql = "AND WHERE nome = LIKE '%" + pesquisa.Nome + "'%";
+                    }
+                    if (pesquisa.Cpf != "")
+                    {
+                        sql = sql = "AND WHERE cpf = LIKE '%" + pesquisa.Cpf + "'%";
+                    }
+                    if (pesquisa.Cnpj != "")
+                    {
+                        sql = sql = "AND WHERE cnpj = LIKE '%" + pesquisa.Cnpj + "'%";
+                    }
+                    if (pesquisa.Tipo != "")
+                    {
+                        sql = sql = "AND WHERE tipo = '" + pesquisa.Tipo + "'";
+                    }
+                }
+                adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
                 DataSet dataset = new DataSet();
                 adapter.Fill(dataset);
 
                 foreach (DataRow linha in dataset.Tables[0].Rows)
                 {
-                    Cliente cc = new Cliente();
+                    Cliente cliente = new Cliente();
 
-                    cc.Codigo = Convert.ToInt32(linha["codigo"]);
-                    cc.Nome = Convert.ToString(linha["nome"]);
-                    cc.Telefone = Convert.ToString(linha["telefone"]);
-                    clientes.Add(cc);
+                    cliente.Codigo = Convert.ToInt32(linha["codigo"]);
+                    cliente.Nome = Convert.ToString(linha["nome"]);
+                    cliente.Telefone = Convert.ToString(linha["telefone"]);
+                    cliente.Email = Convert.ToString(linha["email"]);
+                    cliente.Tipo = Convert.ToString(linha["tipo"]);
+                    /*if (cliente.Tipo == "Fisica")
+                    {
+                        cliente.Cpf = Convert.ToString(linha["cpf"]);
+                    }
+                    if (cliente.Tipo == "Juridica")
+                    {
+                        cliente.Cnpj = Convert.ToString(linha["cnpj"]);
+                    }*/
+                    cliente.Cpf = Convert.ToString(linha["cpf"]);
+                    cliente.Cnpj = Convert.ToString(linha["cnpj"]);
+                    cliente.Senha = Convert.ToString(linha["senha"]);
+
+                    listCliente.Add(cliente);
                 }
-                return clientes;
+                return listCliente;
             }
             catch (Exception e)
             {
                 throw e;
             }
         }
-
+        public void insertCliente(Cliente cliente)
+        {
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                string sql = "";
+                if (cliente.Tipo == "Fisica")
+                {
+                    sql = "INSERT INTO  cliente (nome, telefone, email, cpf, tipo)"
+                + "VALUES ('" + cliente.Nome + "', '" + cliente.Telefone + "', '" + cliente.Email + "','" + cliente.Cpf + "','" + cliente.Tipo + "')";
+                }
+                if (cliente.Tipo == "Juridica")
+                {
+                    sql = "INSERT INTO  cliente (nome, telefone, email, cnpj, tipo)"
+                + "VALUES ('" + cliente.Nome + "', '" + cliente.Telefone + "', '" + cliente.Email + "','" + cliente.Cnpj + "','" + cliente.Tipo + "')";
+                }
+                adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+        public void DeleteCliente(Cliente cliente)
+        {
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                string sql = "DELETE FROM cliente WHERE codigo = " + cliente.Codigo;
+                adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+        public void UpdateCliente(Cliente cliente)
+        {
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                string sql = "UPDATE cliente SET = '" + cliente.Nome + "', telefone = '" + cliente.Telefone + "', email = '" + cliente.Email + "' WHERE codigo = " + cliente.Codigo;
+                adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+        public void updateSenha(Cliente cliente)
+        {
+            try
+            {
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                string sql = "UPDATE senha SET = '" + cliente.Senha + "' WHERE codigo = " + cliente.Codigo;
+                adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
     }
 }
