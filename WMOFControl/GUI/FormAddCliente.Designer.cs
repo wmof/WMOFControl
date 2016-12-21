@@ -145,6 +145,8 @@
             this.comboTipo.Size = new System.Drawing.Size(121, 21);
             this.comboTipo.TabIndex = 11;
             this.comboTipo.SelectedIndexChanged += new System.EventHandler(this.comboTipo_SelectedIndexChanged);
+            this.comboTipo.CursorChanged += new System.EventHandler(this.comboTipo_CursorChanged);
+            this.comboTipo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboTipo_KeyPress);
             // 
             // textTelefone
             // 

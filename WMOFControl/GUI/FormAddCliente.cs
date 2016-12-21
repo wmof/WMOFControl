@@ -48,15 +48,13 @@ namespace WMOFControl.GUI
                 cliente.Tipo = comboTipo.Text;
                 cliente.Cpf = textCpf.Text;
                 cliente.Cnpj = textCnpj.Text;
-                BdCliente bd = new BdCliente();
-                //bd.insertCliente(cliente);
                 ValidationCliente valida = new ValidationCliente();
                 valida.validaInsertCliente(cliente);
-                //limparCampos();
+                limparCampos();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro" + ex.Message);
+                MessageBox.Show("\t \t Erro \n \n " + ex.Message);
             }            
         }
 
@@ -72,11 +70,13 @@ namespace WMOFControl.GUI
             {
                 textCnpj.Enabled = true;
                 textCpf.Enabled = false;
+                textCpf.Text = "";
             }
             else
             {
                 textCnpj.Enabled = false;
                 textCpf.Enabled = true;
+                textCnpj.Text = "";
             }
             if (comboTipo.Text == "")
             {
@@ -89,6 +89,16 @@ namespace WMOFControl.GUI
         private void btClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void comboTipo_CursorChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void comboTipo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            comboTipo.Text = "";
         }
     }
 }

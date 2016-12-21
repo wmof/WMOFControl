@@ -1,0 +1,11 @@
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\bin\Release\WMOFControl.exe.config
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\bin\Release\WMOFControl.exe
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\bin\Release\WMOFControl.pdb
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\bin\Release\MySql.Data.dll
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.Form1.resources
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.GUI.FormAddCliente.resources
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.GUI.FormCliente.resources
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.Properties.Resources.resources
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.csproj.GenerateResource.Cache
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.exe
+C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Release\WMOFControl.pdb

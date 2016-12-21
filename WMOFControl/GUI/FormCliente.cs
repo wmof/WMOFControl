@@ -37,10 +37,17 @@ namespace WMOFControl.GUI
             {
                 ListViewItem item = listView1.Items.Add(Convert.ToString(lista.ElementAt(i).Codigo));
                 item.SubItems.Add(lista.ElementAt(i).Nome);
-                item.SubItems.Add(lista.ElementAt(i).Telefone);
+                item.SubItems.Add("("+lista.ElementAt(i).Telefone.Substring(0,2)+") " + lista.ElementAt(i).Telefone.Substring(2, 5)+"-"+ lista.ElementAt(i).Telefone.Substring(7, 4));
                 item.SubItems.Add(lista.ElementAt(i).Email);
-                item.SubItems.Add(lista.ElementAt(i).Cpf + lista.ElementAt(i).Cnpj); // juntar os dois em apenas uma coluna da tabela, pois nunca terá os dois;
-
+                if (lista.ElementAt(i).Tipo == "Fisica")
+                {
+                    item.SubItems.Add(lista.ElementAt(i).Cpf.Substring(0,3) + "." + lista.ElementAt(i).Cpf.Substring(3, 3)+"."+ lista.ElementAt(i).Cpf.Substring(6, 3)+ "-" + lista.ElementAt(i).Cpf.Substring(9, 2));
+                }
+                if (lista.ElementAt(i).Tipo == "Juridica")
+                {
+                    item.SubItems.Add(lista.ElementAt(i).Cnpj.Substring(0,2)+"."+ lista.ElementAt(i).Cnpj.Substring(2, 3)+"."+ lista.ElementAt(i).Cnpj.Substring(5, 3)+"/"+ lista.ElementAt(i).Cnpj.Substring(8, 4)+"-"+ lista.ElementAt(i).Cnpj.Substring(12, 2));
+                }
+               
             }
 
         }
@@ -54,6 +61,38 @@ namespace WMOFControl.GUI
         {
             FormAddCliente open = new FormAddCliente();
             open.ShowDialog();
+        }
+
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+
+                Cliente cliente = new Cliente();
+                cliente.Codigo = lista.ElementAt(listView1.FocusedItem.Index).Codigo;
+                BdCliente open = new BdCliente();
+                open.deleteCliente(cliente);
+                MessageBox.Show("Cliente deletado com sucesso");
+                btDelete.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            btDelete.Enabled = true;
+            btDelete.Text = "Deletar " + lista.ElementAt(listView1.FocusedItem.Index).Codigo;
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
         }
     }
 }
