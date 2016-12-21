@@ -15,11 +15,13 @@ namespace WMOFControl.Data
     class BdCliente
     {
         Conn bd = new Conn();
+        DataSet dataset = new DataSet();
         public List<Cliente> selectCliente(Cliente pesquisa)
         {
+            List<Cliente> listCliente = new List<Cliente>();
             try
             {
-                List<Cliente> listCliente = new List<Cliente>();
+
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 string sql = "SELECT * FROM cliente ORDER BY nome";
                 if (pesquisa != null)
@@ -43,7 +45,6 @@ namespace WMOFControl.Data
                     }
                 }
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
-                DataSet dataset = new DataSet();
                 adapter.Fill(dataset);
 
                 foreach (DataRow linha in dataset.Tables[0].Rows)
@@ -69,12 +70,14 @@ namespace WMOFControl.Data
 
                     listCliente.Add(cliente);
                 }
-                return listCliente;
             }
+                    
             catch (Exception e)
             {
-                throw e;
+                MessageBox.Show(e.Message);
             }
+
+            return listCliente;
         }
         public void insertCliente(Cliente cliente)
         {
@@ -93,32 +96,37 @@ namespace WMOFControl.Data
                 + "VALUES ('" + cliente.Nome + "', '" + cliente.Telefone + "', '" + cliente.Email + "','" + cliente.Cnpj + "','" + cliente.Tipo + "')";
                 }
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+                
+                adapter.Fill(dataset);
+                
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
         }
-        public void DeleteCliente(Cliente cliente)
+        public void deleteCliente(Cliente cliente)
         {
             try
             {
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 string sql = "DELETE FROM cliente WHERE codigo = " + cliente.Codigo;
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+                adapter.Fill(dataset);
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
         }
-        public void UpdateCliente(Cliente cliente)
+        public void updateCliente(Cliente cliente)
         {
             try
             {
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "UPDATE cliente SET = '" + cliente.Nome + "', telefone = '" + cliente.Telefone + "', email = '" + cliente.Email + "' WHERE codigo = " + cliente.Codigo;
+                string sql = "UPDATE cliente SET nome = '" + cliente.Nome + "', telefone = '" + cliente.Telefone + "', email = '" + cliente.Email + "' WHERE codigo = " + cliente.Codigo;
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+                adapter.Fill(dataset);
             }
             catch (Exception e)
             {
@@ -132,6 +140,7 @@ namespace WMOFControl.Data
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 string sql = "UPDATE senha SET = '" + cliente.Senha + "' WHERE codigo = " + cliente.Codigo;
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
+                adapter.Fill(dataset);
             }
             catch (Exception e)
             {

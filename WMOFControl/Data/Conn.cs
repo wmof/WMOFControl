@@ -16,7 +16,7 @@ namespace WMOFControl.Data
     {
         public MySqlConnection conexao;
         public DataSet conexaoDataSet;
-        string script = "Server = 179.188.16.150; Database=wmofdata; Uid=wmofdata; Pwd=lefera1209";
+        string script = "Server=179.188.16.150; Database=wmofdata; Uid=wmofdata; Pwd=lefera1209";
         public MySqlConnection conect()
         {
             {
@@ -36,5 +36,21 @@ namespace WMOFControl.Data
                 }
             }
         }
-    }
+        public void teste()
+        {
+            var connection = new MySqlConnection(script);
+            var command = connection.CreateCommand();
+
+            try
+            {
+                connection.Open();
+                command.CommandText = "INSERT INTO TABELA1 (CAMPO1) VALUES ('VALOR1')";
+                command.ExecuteNonQuery();
+                MessageBox.Show("teste OK");
+            }
+            catch
+            {
+
+            }
+    } }
 }

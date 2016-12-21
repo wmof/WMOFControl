@@ -9,24 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WMOFControl.Data;
 using WMOFControl.Object;
-using WMOFControl.GUI;
 
-namespace WMOFControl
+namespace WMOFControl.GUI
 {
-    public partial class Form1 : Form
+    public partial class FormCliente : Form
     {
         List<Cliente> lista;
         Cliente pesquisa;
-        public Form1()
+        public FormCliente()
         {
             InitializeComponent();
             pesquisa = null;
         }
-        
+
         private void mostrarCliente()
         {
             BdCliente mostrar = new BdCliente();
-            
+
             lista = mostrar.selectCliente(pesquisa);
             if (lista.Count() == 0)
             {
@@ -39,20 +38,22 @@ namespace WMOFControl
                 ListViewItem item = listView1.Items.Add(Convert.ToString(lista.ElementAt(i).Codigo));
                 item.SubItems.Add(lista.ElementAt(i).Nome);
                 item.SubItems.Add(lista.ElementAt(i).Telefone);
+                item.SubItems.Add(lista.ElementAt(i).Email);
+                item.SubItems.Add(lista.ElementAt(i).Cpf + lista.ElementAt(i).Cnpj); // juntar os dois em apenas uma coluna da tabela, pois nunca terá os dois;
+
             }
 
         }
-        private void button1_Click(object sender, EventArgs e)
+
+        private void FormCliente_Load(object sender, EventArgs e)
         {
-            FormCliente form = new FormCliente();
-            form.ShowDialog();
+            mostrarCliente();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btAdd_Click(object sender, EventArgs e)
         {
-            Conn c = new Conn();
-            c.conect();
-            //mostrarCliente();
+            FormAddCliente open = new FormAddCliente();
+            open.ShowDialog();
         }
     }
 }
