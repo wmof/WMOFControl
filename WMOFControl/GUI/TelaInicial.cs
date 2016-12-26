@@ -29,5 +29,11 @@ namespace WMOFControl.GUI
             FormAddCliente abrir = new FormAddCliente();
             abrir.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FormAddPagamento abrir = new FormAddPagamento();
+            abrir.ShowDialog();
+        }
     }
 }

@@ -21,7 +21,30 @@ namespace WMOFControl.GUI
             InitializeComponent();
             pesquisa = null;
         }
+        public void mostrarPagamento()
+        {
+           
+            BdPagamento bdPag = new BdPagamento();
+            Pagamento pag = new Pagamento();
+            Cliente cc = new Cliente();
+            cc.Codigo = lista.ElementAt(listViewCliente.FocusedItem.Index).Codigo;
+            
+            pag.Cliente = cc;
+            pag.Situacao = "";
+            pag.Data_realizado = "";
+            pag.Data_vencimento = "";
+            List<Pagamento> listPagamento = new List<Pagamento>();
+            listPagamento = bdPag.selectPagamento(pag);
 
+            listViewPagamentos.Items.Clear();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                ListViewItem item = listViewPagamentos.Items.Add(listPagamento.ElementAt(i).Data_vencimento);
+                item.SubItems.Add(listPagamento.ElementAt(i).Data_realizado);
+                item.SubItems.Add(Convert.ToString(listPagamento.ElementAt(i).Valor));
+                item.SubItems.Add(listPagamento.ElementAt(i).Situacao);
+            }
+        }
         private void mostrarCliente()
         {
             BdCliente mostrar = new BdCliente();
@@ -32,22 +55,22 @@ namespace WMOFControl.GUI
                 MessageBox.Show("Nenhum cliente encontrado");
                 return;
             }
-            listView1.Items.Clear();
+            listViewCliente.Items.Clear();
             for (int i = 0; i < lista.Count; i++)
             {
-                ListViewItem item = listView1.Items.Add(Convert.ToString(lista.ElementAt(i).Codigo));
+                ListViewItem item = listViewCliente.Items.Add(Convert.ToString(lista.ElementAt(i).Codigo));
                 item.SubItems.Add(lista.ElementAt(i).Nome);
-                item.SubItems.Add("("+lista.ElementAt(i).Telefone.Substring(0,2)+") " + lista.ElementAt(i).Telefone.Substring(2, 5)+"-"+ lista.ElementAt(i).Telefone.Substring(7, 4));
+                item.SubItems.Add("(" + lista.ElementAt(i).Telefone.Substring(0, 2) + ") " + lista.ElementAt(i).Telefone.Substring(2, 5) + "-" + lista.ElementAt(i).Telefone.Substring(7, 4));
                 item.SubItems.Add(lista.ElementAt(i).Email);
                 if (lista.ElementAt(i).Tipo == "Fisica")
                 {
-                    item.SubItems.Add(lista.ElementAt(i).Cpf.Substring(0,3) + "." + lista.ElementAt(i).Cpf.Substring(3, 3)+"."+ lista.ElementAt(i).Cpf.Substring(6, 3)+ "-" + lista.ElementAt(i).Cpf.Substring(9, 2));
+                    item.SubItems.Add(lista.ElementAt(i).Cpf.Substring(0, 3) + "." + lista.ElementAt(i).Cpf.Substring(3, 3) + "." + lista.ElementAt(i).Cpf.Substring(6, 3) + "-" + lista.ElementAt(i).Cpf.Substring(9, 2));
                 }
                 if (lista.ElementAt(i).Tipo == "Juridica")
                 {
-                    item.SubItems.Add(lista.ElementAt(i).Cnpj.Substring(0,2)+"."+ lista.ElementAt(i).Cnpj.Substring(2, 3)+"."+ lista.ElementAt(i).Cnpj.Substring(5, 3)+"/"+ lista.ElementAt(i).Cnpj.Substring(8, 4)+"-"+ lista.ElementAt(i).Cnpj.Substring(12, 2));
+                    item.SubItems.Add(lista.ElementAt(i).Cnpj.Substring(0, 2) + "." + lista.ElementAt(i).Cnpj.Substring(2, 3) + "." + lista.ElementAt(i).Cnpj.Substring(5, 3) + "/" + lista.ElementAt(i).Cnpj.Substring(8, 4) + "-" + lista.ElementAt(i).Cnpj.Substring(12, 2));
                 }
-               
+
             }
 
         }
@@ -65,12 +88,12 @@ namespace WMOFControl.GUI
 
         private void btDelete_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
 
                 Cliente cliente = new Cliente();
-                cliente.Codigo = lista.ElementAt(listView1.FocusedItem.Index).Codigo;
+                cliente.Codigo = lista.ElementAt(listViewCliente.FocusedItem.Index).Codigo;
                 BdCliente open = new BdCliente();
                 open.deleteCliente(cliente);
                 MessageBox.Show("Cliente deletado com sucesso");
@@ -88,11 +111,22 @@ namespace WMOFControl.GUI
         {
             
             btDelete.Enabled = true;
-            btDelete.Text = "Deletar " + lista.ElementAt(listView1.FocusedItem.Index).Codigo;
+            btDelete.Text = "Deletar " + lista.ElementAt(listViewCliente.FocusedItem.Index).Codigo;
+            mostrarPagamento();
         }
 
         private void listView1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btClear_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

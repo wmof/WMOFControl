@@ -51,12 +51,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\BdCliente.cs" />
+    <Compile Include="Data\BdPagamento.cs" />
     <Compile Include="Data\Conn.cs" />
     <Compile Include="GUI\FormAddCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormAddCliente.Designer.cs">
       <DependentUpon>FormAddCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormAddPagamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormAddPagamento.Designer.cs">
+      <DependentUpon>FormAddPagamento.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormCliente.cs">
       <SubType>Form</SubType>
@@ -81,6 +88,9 @@
     <Compile Include="Validation\ValidationCliente.cs" />
     <EmbeddedResource Include="GUI\FormAddCliente.resx">
       <DependentUpon>FormAddCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormAddPagamento.resx">
+      <DependentUpon>FormAddPagamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
