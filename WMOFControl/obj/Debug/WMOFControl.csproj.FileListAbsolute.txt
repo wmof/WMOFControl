@@ -10,3 +10,15 @@ c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\
 c:\users\leto\documents\visual studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.pdb
 C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.FormAddCliente.resources
 C:\Users\Leto\Documents\Visual Studio 2015\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.FormCliente.resources
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\bin\Debug\WMOFControl.exe.config
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\bin\Debug\WMOFControl.exe
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\bin\Debug\WMOFControl.pdb
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\bin\Debug\MySql.Data.dll
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.csprojResolveAssemblyReference.cache
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.FormAddCliente.resources
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.FormCliente.resources
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.Properties.Resources.resources
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.csproj.GenerateResource.Cache
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.exe
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.pdb
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.TelaInicial.resources
