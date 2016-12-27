@@ -77,10 +77,10 @@ namespace WMOFControl.Data
         {
             try
             {
+                string valor = Convert.ToString(pagamento.Valor).Replace(",",".");
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 string sql = "INSERT INTO pagamento (descricao, valor, data_vencimento, data_realizado, situacao, cliente_codigo, codigo_barras)"
-                + " VALUES ('" + pagamento.Descricao + "', '" + pagamento.Valor + "', '" + pagamento.Data_vencimento + "','" + pagamento.Data_realizado + "','" + pagamento.Situacao + "','" + pagamento.Cliente.Codigo + "','" + pagamento.Codigo_barras + "')";
-
+                + " VALUES ('" + pagamento.Descricao + "', '" + valor + "', '" + pagamento.Data_vencimento + "','" + pagamento.Data_realizado + "','" + pagamento.Situacao + "','" + pagamento.Cliente.Codigo + "','" + pagamento.Codigo_barras + "')";
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
 
                 adapter.Fill(dataset);
@@ -105,27 +105,14 @@ namespace WMOFControl.Data
                 MessageBox.Show(e.Message);
             }
         }
-        public void updatePagamento(Pagamento pagamento)
-        {
-            try
-            {
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "UPDATE pagamento SET descricao = '" + pagamento.Descricao + "', valor = '" + pagamento.Valor + "', data_vencimento = '" + pagamento.Data_vencimento + "', data_realizado = '" + pagamento.Data_realizado + "', situacao = '" + pagamento.Situacao + "' WHERE codigo = " + pagamento.Codigo;
-                adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
-                adapter.Fill(dataset);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-        }
+        
 
         public void updatePago(Pagamento pagamento)
         {
             try
             {
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "UPDATE pagamento SET situacao = 'Pago', data_realizado = '" + pagamento.Data_realizado + "' WHERE codigo = " + pagamento.Codigo;
+                string sql = "UPDATE pagamento SET situacao = 'Pago', data_realizado = '" + DateTime.Now.ToShortDateString() + "' WHERE codigo = " + pagamento.Codigo;
                 adapter.SelectCommand = new MySqlCommand(sql, bd.conect());
                 adapter.Fill(dataset);
             }

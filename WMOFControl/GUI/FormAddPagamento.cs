@@ -49,19 +49,53 @@ namespace WMOFControl.GUI
         private void FormAddPagamento_Load(object sender, EventArgs e)
         {
             pagamento.Situacao = "Pendente";
+            pagamento.Data_realizado = "";
             mostrarCliente();
         }
        
 
         private void btAdd_Click(object sender, EventArgs e)
         {
-            pagamento.Descricao = textDescricao.Text;
-            pagamento.Codigo_barras = textCodigo.Text;
-            pagamento.Data_realizado = textRealizado.Text;
-            pagamento.Data_vencimento = textVencimento.Text;
-            pagamento.Valor = Convert.ToSingle(maskedTextBox1.Text.Replace("R$",""));
-            pagamento.Cliente.Codigo = listCliente.ElementAt(comboCliente.SelectedIndex).Codigo;
-            bdPag.insertPagamento(pagamento);
+            try
+            {
+                pagamento.Descricao = textDescricao.Text;
+                pagamento.Codigo_barras = textCodigo.Text;
+                pagamento.Data_realizado = textRealizado.Text;
+                pagamento.Data_vencimento = textVencimento.Text;
+                try
+                {
+                    pagamento.Valor = Convert.ToSingle(maskedTextBox1.Text.Replace("R$", "").Replace(",", "."));
+
+                }
+                catch
+                {
+                    MessageBox.Show("Informe um valor");
+                    return;
+                }
+                try
+                {
+                    Cliente cli = new Cliente();
+                    cli.Codigo = listCliente.ElementAt(comboCliente.SelectedIndex).Codigo;
+                    pagamento.Cliente = cli;
+                }
+                catch
+                {
+                    MessageBox.Show("Selecione um cliente");
+                }
+
+                if (checkPago.Checked == true)
+                {
+                    pagamento.Data_realizado = textRealizado.Text;
+                }
+               
+                ValidationPagamento valida = new ValidationPagamento();
+                valida.ValidaInserePagamento(pagamento);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void checkPago_CheckedChanged(object sender, EventArgs e)
