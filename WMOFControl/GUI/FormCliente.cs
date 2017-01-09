@@ -16,6 +16,7 @@ namespace WMOFControl.GUI
     {
         List<Cliente> listCliente;
         List<Pagamento> listPagamento = new List<Pagamento>();
+        List<Produto> listProduto = new List<Produto>();
         Cliente pesquisa;
         public FormCliente()
         {
@@ -34,7 +35,6 @@ namespace WMOFControl.GUI
             pag.Situacao = "";
             pag.Data_realizado = "";
             pag.Data_vencimento = "";
-
             listPagamento = bdPag.selectPagamento(pag);
 
             listViewPagamentos.Items.Clear();
@@ -46,6 +46,28 @@ namespace WMOFControl.GUI
                 item.SubItems.Add(listPagamento.ElementAt(i).Situacao);
             }
         }
+        public void mostrarProduto()
+        {
+            BdProduto bdProd = new BdProduto();
+            Produto pro = new Produto();
+            Cliente cc = new Cliente();
+            cc.Codigo = listCliente.ElementAt(listViewCliente.FocusedItem.Index).Codigo;
+            pro.Cliente = cc;
+            pro.Situacao = "";
+            pro.Data_entrega = "";
+            pro.Data_solicitacao = "";
+            listProduto = bdProd.selectProduto(pro);
+
+            listViewProduto.Items.Clear();
+            for (int i = 0; i < listProduto.Count; i++)
+            {
+                ListViewItem item = listViewProduto.Items.Add(listProduto.ElementAt(i).Titulo);
+                item.SubItems.Add(Convert.ToString(listProduto.ElementAt(i).Valor));
+                item.SubItems.Add(listProduto.ElementAt(i).Data_solicitacao);
+                item.SubItems.Add(listProduto.ElementAt(i).Situacao);
+            }
+             
+        }        
         private void mostrarCliente()
         {
             BdCliente mostrar = new BdCliente();
@@ -64,11 +86,11 @@ namespace WMOFControl.GUI
                 item.SubItems.Add("(" + listCliente.ElementAt(i).Telefone.Substring(0, 2) + ") " + listCliente.ElementAt(i).Telefone.Substring(2, 5) + "-" + listCliente.ElementAt(i).Telefone.Substring(7, 4));
                 item.SubItems.Add(listCliente.ElementAt(i).Email);
                 if (listCliente.ElementAt(i).Tipo == "Fisica")
-                {//Carrega CPF apenas com mascara
+                {//Carrega CPF apenas (com mascara)
                     item.SubItems.Add(listCliente.ElementAt(i).Cpf.Substring(0, 3) + "." + listCliente.ElementAt(i).Cpf.Substring(3, 3) + "." + listCliente.ElementAt(i).Cpf.Substring(6, 3) + "-" + listCliente.ElementAt(i).Cpf.Substring(9, 2));
                 }
                 if (listCliente.ElementAt(i).Tipo == "Juridica")
-                {//Carrega CNPJ apenas com mascara
+                {//Carrega CNPJ apenas (com mascara)
                     item.SubItems.Add(listCliente.ElementAt(i).Cnpj.Substring(0, 2) + "." + listCliente.ElementAt(i).Cnpj.Substring(2, 3) + "." + listCliente.ElementAt(i).Cnpj.Substring(5, 3) + "/" + listCliente.ElementAt(i).Cnpj.Substring(8, 4) + "-" + listCliente.ElementAt(i).Cnpj.Substring(12, 2));
                 }
 
@@ -115,6 +137,7 @@ namespace WMOFControl.GUI
             btDelete.Enabled = true;
             btDelete.Text = "Deletar " + listCliente.ElementAt(listViewCliente.FocusedItem.Index).Codigo;
             mostrarPagamento();
+            mostrarProduto();
         }
 
         private void listView1_Click(object sender, EventArgs e)
@@ -195,6 +218,45 @@ namespace WMOFControl.GUI
             btPg.Enabled = false;
 
 
+        }
+
+        private void listViewProduto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btProdDetalhes.Enabled = true;
+            btProdPronto.Enabled = true;
+            if (listProduto.ElementAt(listViewProduto.FocusedItem.Index).Situacao == "Pendente")
+            {
+                btProdPronto.Enabled = true;
+
+            }
+            else
+            {
+                btProdPronto.Enabled = false;
+            }
+        }
+
+        private void btProdDetalhes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Produto: " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Codigo
+           + "\n Referente a: " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Titulo
+           + "\n Descrito: " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Descricao
+           + "\n Valor: " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Valor
+           + "\n Data de Solicitação: " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Data_solicitacao
+           + "\n Data que foi Entregue: " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Data_entrega
+           + "\n Situação:  " + listProduto.ElementAt(listViewProduto.FocusedItem.Index).Situacao
+           + "\n Cliente: " + listCliente.ElementAt(listViewCliente.FocusedItem.Index).Nome);
+        }
+
+        private void btProdPronto_Click(object sender, EventArgs e)
+        {
+
+            BdProduto bdProd = new BdProduto();
+            Produto prod = new Produto();
+            prod.Codigo = listPagamento.ElementAt(listViewPagamentos.FocusedItem.Index).Codigo;
+            bdProd.updateEntregue(prod);
+            MessageBox.Show("Entrega de Produto Efetuada");
+            mostrarProduto();
+            btProdPronto.Enabled = false;
         }
     }
 }

@@ -48,7 +48,6 @@
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btProd = new System.Windows.Forms.Button();
-            this.btProdAlterar = new System.Windows.Forms.Button();
             this.btProdCadastrar = new System.Windows.Forms.Button();
             this.btProdDetalhes = new System.Windows.Forms.Button();
             this.btProdPronto = new System.Windows.Forms.Button();
@@ -236,7 +235,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btProd);
-            this.groupBox2.Controls.Add(this.btProdAlterar);
             this.groupBox2.Controls.Add(this.btProdCadastrar);
             this.groupBox2.Controls.Add(this.btProdDetalhes);
             this.groupBox2.Controls.Add(this.btProdPronto);
@@ -258,19 +256,9 @@
             this.btProd.Text = "Deletar";
             this.btProd.UseVisualStyleBackColor = true;
             // 
-            // btProdAlterar
-            // 
-            this.btProdAlterar.Enabled = false;
-            this.btProdAlterar.Location = new System.Drawing.Point(479, 150);
-            this.btProdAlterar.Name = "btProdAlterar";
-            this.btProdAlterar.Size = new System.Drawing.Size(75, 23);
-            this.btProdAlterar.TabIndex = 4;
-            this.btProdAlterar.Text = "Alterar";
-            this.btProdAlterar.UseVisualStyleBackColor = true;
-            // 
             // btProdCadastrar
             // 
-            this.btProdCadastrar.Location = new System.Drawing.Point(479, 121);
+            this.btProdCadastrar.Location = new System.Drawing.Point(479, 150);
             this.btProdCadastrar.Name = "btProdCadastrar";
             this.btProdCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btProdCadastrar.TabIndex = 3;
@@ -286,6 +274,7 @@
             this.btProdDetalhes.TabIndex = 2;
             this.btProdDetalhes.Text = "+ Detalhes";
             this.btProdDetalhes.UseVisualStyleBackColor = true;
+            this.btProdDetalhes.Click += new System.EventHandler(this.btProdDetalhes_Click);
             // 
             // btProdPronto
             // 
@@ -296,6 +285,7 @@
             this.btProdPronto.TabIndex = 1;
             this.btProdPronto.Text = "Pronto";
             this.btProdPronto.UseVisualStyleBackColor = true;
+            this.btProdPronto.Click += new System.EventHandler(this.btProdPronto_Click);
             // 
             // listViewProduto
             // 
@@ -312,6 +302,7 @@
             this.listViewProduto.TabIndex = 0;
             this.listViewProduto.UseCompatibleStateImageBehavior = false;
             this.listViewProduto.View = System.Windows.Forms.View.Details;
+            this.listViewProduto.SelectedIndexChanged += new System.EventHandler(this.listViewProduto_SelectedIndexChanged);
             // 
             // columnHeader6
             // 
@@ -503,7 +494,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.Button btAlterar;
         private System.Windows.Forms.Button btProd;
-        private System.Windows.Forms.Button btProdAlterar;
         private System.Windows.Forms.Button btProdCadastrar;
         private System.Windows.Forms.Button btProdDetalhes;
         private System.Windows.Forms.Button btProdPronto;

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Data\BdCliente.cs" />
     <Compile Include="Data\BdPagamento.cs" />
+    <Compile Include="Data\BdProduto.cs" />
     <Compile Include="Data\Conn.cs" />
     <Compile Include="GUI\FormAddCliente.cs">
       <SubType>Form</SubType>
@@ -64,6 +65,12 @@
     </Compile>
     <Compile Include="GUI\FormAddPagamento.Designer.cs">
       <DependentUpon>FormAddPagamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormAddProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormAddProduto.Designer.cs">
+      <DependentUpon>FormAddProduto.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormCliente.cs">
       <SubType>Form</SubType>
@@ -87,11 +94,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validation\ValidationCliente.cs" />
     <Compile Include="Validation\ValidationPagamento.cs" />
+    <Compile Include="Validation\ValidationProduto.cs" />
     <EmbeddedResource Include="GUI\FormAddCliente.resx">
       <DependentUpon>FormAddCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormAddPagamento.resx">
       <DependentUpon>FormAddPagamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormAddProduto.resx">
+      <DependentUpon>FormAddProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>

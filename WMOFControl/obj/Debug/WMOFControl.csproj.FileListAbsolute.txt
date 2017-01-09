@@ -23,3 +23,4 @@ C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\
 C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.pdb
 C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.TelaInicial.resources
 C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.FormAddPagamento.resources
+C:\Users\Leto\Documents\Visual Studio 2017\Projects\WMOFControl\WMOFControl\obj\Debug\WMOFControl.GUI.FormAddProduto.resources
