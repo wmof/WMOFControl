@@ -16,7 +16,7 @@ namespace WMOFControl.Data
     {
         public MySqlConnection conexao;
         public DataSet conexaoDataSet;
-        string script = "Server=179.188.16.150; Database=wmofdata; Uid=wmofdata; Pwd=lefera1209";
+        string script = "Server=mysql.hostinger.com.br; Database=u376420042_wmofd; Uid=u376420042_wmofd; Pwd=lefera1209";
         public MySqlConnection conect()
         {
             {
